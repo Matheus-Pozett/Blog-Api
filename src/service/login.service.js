@@ -1,4 +1,4 @@
-const UserInvalidError = require('../Errors/UserInvalidError');
+const LoginInvalidError = require('../Errors/LoginInvalidError');
 const { User } = require('../models');
 const { generateToken } = require('../utils/JWT');
 
@@ -10,7 +10,7 @@ const login = async (loginData) => {
   });
 
   if (!user || user.password !== password) {
-    throw new UserInvalidError();
+    throw new LoginInvalidError('Invalid fields');
   }
 
   const { password: _password, ...userWithoutPassword } = user.dataValues;
