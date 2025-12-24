@@ -18,7 +18,6 @@ const loginMiddleware = (req, res, next) => {
   const { error } = loginSchema.validate(req.body);
 
   if (error) {
-    console.log(error);
     const { message } = error.details[0];
     throw new LoginInvalidError(message);
   }
