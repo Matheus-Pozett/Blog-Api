@@ -40,7 +40,7 @@ services:
       MYSQL_USER: root
       MYSQL_PASSWORD: password
       MYSQL_HOST: db # Nome do service logo abaixo
-      JWT_SECRET: secretJWT
+      JWT_SECRET: ${JWT_SECRET}
       API_HOST: 'node'
       API_PORT: 3001
       NODE_ENV: 'development'
