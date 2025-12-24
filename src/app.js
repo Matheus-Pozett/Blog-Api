@@ -1,5 +1,7 @@
+require('express-async-errors');
 const express = require('express');
-
+const { UserRouter } = require('./routes');
+const errorMiddleware = require('./middleware/error.middleware');
 // ...
 
 const app = express();
@@ -10,9 +12,7 @@ app.get('/', (_request, response) => {
 });
 
 app.use(express.json());
+app.use(UserRouter);
+app.use(errorMiddleware);
 
-// ...
-
-// É importante exportar a constante `app`,
-// para que possa ser utilizada pelo arquivo `src/server.js`
 module.exports = app;
