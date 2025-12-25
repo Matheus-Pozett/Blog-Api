@@ -1,6 +1,6 @@
 require('express-async-errors');
 const express = require('express');
-const { UserRouter } = require('./routes');
+const { UserRouter, CategoryRouter } = require('./routes');
 const { errorMiddleware } = require('./middleware');
 // ...
 
@@ -13,6 +13,7 @@ app.get('/', (_request, response) => {
 
 app.use(express.json());
 app.use(UserRouter);
+app.use(CategoryRouter);
 app.use(errorMiddleware);
 
 module.exports = app;
