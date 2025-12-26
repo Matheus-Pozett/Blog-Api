@@ -1,6 +1,6 @@
 /* eslint-disable max-lines-per-function */
 const CategoryError = require('../Errors/CategoryError');
-const { Category, BlogPost, PostCategory, sequelize } = require('../models');
+const { Category, BlogPost, PostCategory, sequelize, User } = require('../models');
 
 const createPost = async ({ title, content, categoryIds }, userId) => {
   const { count } = await Category.findAndCountAll({
@@ -35,4 +35,14 @@ const createPost = async ({ title, content, categoryIds }, userId) => {
   }
 };
 
-module.exports = { createPost };
+const getAllPosts = async () => {
+  const posts = await BlogPost.findAll({
+    include: [{ model: User, as: 'user', attributes: { exclude: ['password'] } },
+      { model: Category, as: 'categories', through: { attributes: [] } },
+    ],
+  });
+
+  return posts;
+};
+
+module.exports = { createPost, getAllPosts };
