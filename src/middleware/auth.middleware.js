@@ -8,7 +8,9 @@ const authToken = (req, res, next) => {
 
   const token = authorization.split(' ')[1];
 
-  jwt.verifyToken(token);
+  const user = jwt.verifyToken(token);
+
+  req.user = user;
 
   next();
 };
