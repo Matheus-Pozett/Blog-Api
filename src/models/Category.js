@@ -1,12 +1,12 @@
-const CategoryModel = (sequelize, Datatypes) => {
+const CategoryModel = (sequelize, DataTypes) => {
   const Category = sequelize.define('Category', {
     id: {
-      type: Datatypes.INTEGER,
+      type: DataTypes.INTEGER,
       autoIncrement: true,
       primaryKey: true
     },
     name: {
-      type: Datatypes.STRING,
+      type: DataTypes.STRING,
       allowNull: false,
     }
   }, {
