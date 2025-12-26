@@ -1,5 +1,6 @@
 /* eslint-disable max-lines-per-function */
 const CategoryError = require('../Errors/CategoryError');
+const PostError = require('../Errors/PostError');
 const { Category, BlogPost, PostCategory, sequelize, User } = require('../models');
 
 const createPost = async ({ title, content, categoryIds }, userId) => {
@@ -45,4 +46,15 @@ const getAllPosts = async () => {
   return posts;
 };
 
-module.exports = { createPost, getAllPosts };
+const getPostById = async (id) => {
+  const post = await BlogPost.findByPk(id, {
+    include: [{ model: User, as: 'user', attributes: { exclude: ['password'] } },
+      { model: Category, as: 'categories', through: { attributes: [] } },
+    ],
+  });
+  
+  if (!post) throw new PostError('Post does not exist', 404);
+  return post;
+};
+
+module.exports = { createPost, getAllPosts, getPostById };

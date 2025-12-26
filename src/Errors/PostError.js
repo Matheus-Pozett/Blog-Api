@@ -1,8 +1,8 @@
 class PostError extends Error {
-  constructor(message) {
+  constructor(message, status) {
     super(message);
     this.name = 'PostError';
-    this.status = 400;
+    this.status = status;
   }
 }
 

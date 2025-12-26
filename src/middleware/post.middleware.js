@@ -19,7 +19,7 @@ const postMiddleware = (req, res, next) => {
 
   if (error) {
     const { message } = error.details[0];
-    throw new PostError(message);
+    throw new PostError(message, 400);
   }
 
   next();
