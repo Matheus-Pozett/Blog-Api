@@ -7,7 +7,6 @@ const createUser = async (req, res) => {
 };
 
 const getUsers = async (req, res) => {
-  console.log(req);
   const users = await UserService.getAllUsers();
 
   return res.status(200).json(users);
