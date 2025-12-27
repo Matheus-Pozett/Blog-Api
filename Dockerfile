@@ -1,4 +1,4 @@
-FROM node:16.14
+FROM node:16-bullseye
 RUN apt update
 RUN apt install lsof
 WORKDIR /app
