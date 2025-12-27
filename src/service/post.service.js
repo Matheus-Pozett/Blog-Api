@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 /* eslint-disable max-lines-per-function */
 const CategoryError = require('../Errors/CategoryError');
 const PostError = require('../Errors/PostError');
@@ -57,4 +58,18 @@ const getPostById = async (id) => {
   return post;
 };
 
-module.exports = { createPost, getAllPosts, getPostById };
+const updatePost = async (id, user, postData) => {
+  const post = await getPostById(id);
+  const { title, content } = postData;
+  if (!post) throw new PostError('Post does not exist', 404);
+
+  if (post.userId !== user.id) throw new PostError('Unauthorized user', 401);
+
+  await BlogPost.update({ title, content }, { where: { id } });
+
+  const updatedPost = await getPostById(id);
+
+  return updatedPost;
+};
+
+module.exports = { createPost, getAllPosts, getPostById, updatePost };
