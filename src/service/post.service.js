@@ -1,5 +1,6 @@
 /* eslint-disable max-lines */
 /* eslint-disable max-lines-per-function */
+const { Op } = require('sequelize');
 const CategoryError = require('../Errors/CategoryError');
 const PostError = require('../Errors/PostError');
 const { Category, BlogPost, PostCategory, sequelize, User } = require('../models');
@@ -81,4 +82,27 @@ const deletePost = async (id, user) => {
   await BlogPost.destroy({ where: { id } });
 };
 
-module.exports = { createPost, getAllPosts, getPostById, updatePost, deletePost };
+const searchPostByTerm = async (q) => {
+  const posts = await BlogPost.findAll({ 
+    where: {
+      [Op.or]: [
+        { title: { [Op.like]: `%${q}%` } },
+        { content: { [Op.like]: `%${q}%` } },
+      ],
+    },
+    include: [{ model: User, as: 'user', attributes: { exclude: ['password'] } },
+      { model: Category, as: 'categories', through: { attributes: [] } },
+    ],
+  });
+
+  return posts;
+};
+
+module.exports = { 
+  createPost, 
+  getAllPosts,
+  getPostById,
+  updatePost,
+  deletePost,
+  searchPostByTerm, 
+};

@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 const { PostService } = require('../service');
 
 const createPost = async (req, res) => {
@@ -48,4 +49,19 @@ const deletePost = async (req, res) => {
   return res.status(204).end();
 };
 
-module.exports = { createPost, getAllPosts, getPostById, updatePost, deletePost };
+const searchPostByTerm = async (req, res) => {
+  const { q } = req.query;
+
+  const posts = await PostService.searchPostByTerm(q);
+
+  return res.status(200).json(posts);
+};
+
+module.exports = { 
+  createPost, 
+  getAllPosts,
+  getPostById,
+  updatePost,
+  deletePost,
+  searchPostByTerm, 
+};
