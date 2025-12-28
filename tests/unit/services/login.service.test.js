@@ -8,9 +8,9 @@ const LoginInvalidError = require('../../../src/Errors/LoginInvalidError');
 const {userMock, userSequelizeMock, token} = require('../mocks/userMock');
 const {expect} = chai;
 
-chai.use(sinonChai)
+chai.use(sinonChai);
 
-describe.only('Testes de unidade: Service Login', function () {
+describe('Testes de unidade: Service Login', function () {
   afterEach(function () {
     sinon.restore();
   });
