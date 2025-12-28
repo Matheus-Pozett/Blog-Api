@@ -14,7 +14,7 @@ const {userMock,
 const { expect } = chai;
 chai.use(sinonChai);
 
-describe.only('Teste de unidades: Service User', function () {
+describe('Teste de unidades: Service User', function () {
   afterEach(function () {
     sinon.restore();
   })
