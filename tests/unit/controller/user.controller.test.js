@@ -9,7 +9,7 @@ const { expect } = chai;
 
 chai.use(sinonChai);
 
-describe.only("Testes de unidade: UserController", function () {
+describe("Testes de unidade: UserController", function () {
   afterEach(function () {
     sinon.restore();
   });
