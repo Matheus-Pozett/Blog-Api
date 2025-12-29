@@ -92,4 +92,36 @@ describe('Teste de unidades: Service User', function () {
       expect(error.message).to.be.eq('User does not exist');
     }
   });
+
+  describe('Função deleteUser', function () {
+    it('Deleta o usuário logado com sucesso', async function () {
+      const userData = { id: 5 };
+      
+      const userMock = { id: 5, displayName: "User Exemplo" };
+      sinon.stub(User, 'findByPk').resolves(userMock);
+
+      sinon.stub(User, 'destroy').resolves(1);
+
+      await UserService.deleteUser(userData);
+
+      expect(User.destroy).to.have.been.calledWith({
+        where: { id: 5 }
+      });
+    });
+
+    it('Lança erro se o usuário não for encontrado', async function () {
+      const userData = { id: 999 };
+
+      sinon.stub(User, 'findByPk').resolves(null);
+
+      try {
+        await UserService.deleteUser(userData);
+        throw new Error('Deveria ter lançado erro de usuário não encontrado');
+      } catch (error) {
+        expect(error).to.be.instanceOf(UserError);
+        expect(error.status).to.be.equal(404);
+        expect(error.message).to.be.equal('User does not exist');
+      }
+    });
+  });
 });
