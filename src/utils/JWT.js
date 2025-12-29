@@ -4,7 +4,7 @@ const AuthError = require('../Errors/AuthError');
 const TOKEN_SECRET = process.env.JWT_SECRET || 'secretJWT';
 
 const jwtConfig = {
-  expiresIn: '1d',
+  expiresIn: '7d',
   algorithm: 'HS256',
 };
 

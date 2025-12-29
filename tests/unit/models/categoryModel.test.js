@@ -15,8 +15,6 @@ chai.use(sinonChai);
 describe('Testes de Unidade: Model de Category', function () {
   const Category = CategoryModel(sequelize, dataTypes);
   const category = new Category();
-  console.log(Category)
-  console.log(category)
   describe('Nome da model', function () {
     checkModelName(Category)('Category')
   })
