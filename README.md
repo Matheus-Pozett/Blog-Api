@@ -93,28 +93,6 @@ npm run dev
 
 A API estará disponível em `http://localhost:3001`
 
-### Sem Docker
-
-1. **Clone e instale**
-```bash
-git clone git@github.com:Matheus-Pozett/Blog-Api.git
-cd Blog-Api
-npm install
-```
-
-2. **Configure as variáveis de ambiente**
-```bash
-cp .env.example .env
-# Edite o arquivo .env com suas configurações
-```
-
-3. **Execute**
-```bash
-npm run predev
-npm run seed
-npm run dev
-```
-
 ## 📚 Documentação da API
 
 Acesse a documentação interativa Swagger em: **http://localhost:3001/api-docs**
