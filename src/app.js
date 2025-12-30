@@ -2,6 +2,7 @@ require('express-async-errors');
 const express = require('express');
 const { UserRouter, CategoryRouter, PostRouter } = require('./routes');
 const { errorMiddleware } = require('./middleware');
+const { specs, swaggerUi } = require('./swagger');
 // ...
 
 const app = express();
@@ -12,6 +13,10 @@ app.get('/', (_request, response) => {
 });
 
 app.use(express.json());
+
+// Documentação Swagger
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
+
 app.use(UserRouter);
 app.use(CategoryRouter);
 app.use(PostRouter);
