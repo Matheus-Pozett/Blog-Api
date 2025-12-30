@@ -33,7 +33,7 @@ describe('Testes de Unidade: Model de User', function () {
       tableName: 'blog_posts', // Apenas um objeto simples para representar o model
     };
 
-    before(() => {
+    beforeEach(() => {
       //associate passando mock
       User.associate({ BlogPost });
     });

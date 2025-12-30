@@ -35,7 +35,7 @@ describe('Testes de Unidade: Model de PostCategory', function() {
       belongsToMany: sinon.spy(),
     };
 
-    before(() => {
+    beforeEach(() => {
       PostCategory.associate({ Category, BlogPost });
     });
 
